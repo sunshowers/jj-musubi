@@ -855,6 +855,11 @@ Thus the theorems about resolving a conflicted remote bookmark or `restore_rever
 an actual import, not an unconditional effect of the next ordinary command. The conformance
 harness applies that selection and tests unchanged refs too.
 
+Against jj's main branch, the conformance driver maps a command at an explicit operation id
+to its bookmark change without Git import or export. The following head command merges and
+imports/exports normally. `non_head_commands_leave_git_refs_unexported` checks this native
+contract. The slot functions and their theorems are unchanged.
+
 - `noSpuriousRevert`: an import changes a local bookmark only if git moved its ref, whatever
   musubi realizes and whether or not its export succeeds. `remoteNoSpuriousRevert`: the same
   for a remote bookmark, as long as every realization is exported before a `jj` command can
